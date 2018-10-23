@@ -28,7 +28,7 @@ class MainWindow(QMainWindow):
 		self.main_splitter.addWidget(self.tools_module)
 		self.main_splitter.addWidget(self.display_module)
 		# Proporcion inicial de espacios de distribucion
-		self.main_splitter.setSizes([100,400])
+		self.main_splitter.setSizes([250,480])
 
 		# Adicion del splitter al layout horizontal principal
 		self.main_layout.addWidget(self.main_splitter)

@@ -28,15 +28,16 @@ class ListWidget(QWidget):
 		self.setLayout(self.layout)
 
 		### <Pruebas>
-		for j in ["Tapaculo 1", "Tapaculo 2", "Tapaculo 3"]:
-			self.addItem(j, "Perú", "posible_path.jpeg")
+		# for j in ["Tapaculo 1", "Tapaculo 2", "Tapaculo 3"]:
+		#	self.addItem(j, "Perú", "posible_path.jpeg")
 		### </Pruebas>
 
-	def addItem(self, value, grp_name="Otros", path=None):
-		new_item = QListWidgetItem(grp_name + "::" + value)	# Label del item en la lista
-		new_item.setData(33, grp_name)	# new_item[33] = nombre de grupo/pais de procedencia de la especie
-		new_item.setData(34, value)	# new_item[34] = valor/nombre del especimen
-		new_item.setData(35, path)	# new_item[35] = path al archivo de secuencia
+	def addItem(self, dict_values):
+		group = dict_values['group']
+		name = dict_values['species_sci']
+		new_item = QListWidgetItem(group + "::" + name)	# Label del item en la lista
+		for i, (key, value) in zip(range(33, 33+len(dict_values)), dict_values.items()):
+			new_item.setData(i, value)	# new_item[33] = nombre de grupo/pais de procedencia de la especie
 		self.list.addItem(new_item)	# Adicion del item
 		self.items_list.append(new_item)	# Consideracion de la lista (posible utilidad futura)
 
