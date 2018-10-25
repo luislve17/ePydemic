@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
 
 		self.tools_module = ToolsModule()	# Modulo de herramientas
 
-		self.display_module = DisplayModule() # Modulo de dibujo/muestra
+		self.display_module = DisplayModule(self.tools_module) # Modulo de dibujo/muestra
 
 		# Adicion de ambos modulos al splitter dinamico
 		self.main_splitter.addWidget(self.tools_module)

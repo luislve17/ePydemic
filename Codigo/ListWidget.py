@@ -4,9 +4,14 @@
 Widget de listado y acceso a los archivos/data genetica provista en files. Cada item presenta los
 siguientes campos al ser creados, modificados o leidos.
 
-# 33: Grupo perteneciente
-# 34: Valor del item
-# 35: Path al archivo genetico
+33: [family]
+34: [genre]
+35: [species_sci]
+36: [species]
+37: [group]
+38: [route_img]
+39: [desc]
+40: [fasta]
 """
 
 from PyQt4.QtCore import *
@@ -43,4 +48,5 @@ class ListWidget(QWidget):
 
 	# Funcion de manejo de seleccion de item
 	def itemSelected(self, item):
-		print("Clicked->{}:{}:{}".format(item.data(33), item.data(34), item.data(35)))
+		pass
+		#print("Clicked->{}:{}:{}".format(item.data(33), item.data(34), item.data(35)))
