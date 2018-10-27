@@ -21,14 +21,14 @@ class MainWindow(QMainWindow):
 		self.main_widget = QWidget()	# Widget principal
 
 		self.tools_module = ToolsModule()	# Modulo de herramientas
-
 		self.display_module = DisplayModule(self.tools_module) # Modulo de dibujo/muestra
+		self.tools_module.setOperationsModule(self.display_module)
 
 		# Adicion de ambos modulos al splitter dinamico
 		self.main_splitter.addWidget(self.tools_module)
 		self.main_splitter.addWidget(self.display_module)
 		# Proporcion inicial de espacios de distribucion
-		self.main_splitter.setSizes([250,480])
+		self.main_splitter.setSizes([280,480])
 
 		# Adicion del splitter al layout horizontal principal
 		self.main_layout.addWidget(self.main_splitter)

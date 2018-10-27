@@ -1,0 +1,16 @@
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
+
+class DeleteButton(QPushButton):
+	def __init__(self, listing_module):
+		super().__init__()
+		self.listing_module = listing_module
+		self.setMaximumSize(33, 27)
+		self.setIcon(QIcon("assets/trash_icon.png"))
+		self.clicked.connect(self.deleteItem)
+
+	def deleteItem(self):
+		items = self.listing_module.list_widget.list.selectedItems()
+		for i in items:
+			self.listing_module.list_widget.list.takeItem(self.listing_module.list_widget.list.row(i))
