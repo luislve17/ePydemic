@@ -1,3 +1,8 @@
+"""
+## FileHandler ##
+"""
+
+# Cargar informacion de los archivos .epy
 class FileHandler():
 	def loadEpyFile(file_path):
 		data = {}

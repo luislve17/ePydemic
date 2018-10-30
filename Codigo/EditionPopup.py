@@ -1,3 +1,7 @@
+"""
+## EditionPopup ##
+"""
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -6,14 +10,14 @@ from HLine import *
 
 class EditionPopup(QMainWindow):
 	def __init__(self):
-		super().__init__()
-		self.main_widget = QWidget()
-		self.main_widget.setMinimumWidth(400)
+		super().__init__()		# Llamada obligatoria al constructor del padre
+		self.main_widget = QWidget()	# Widget principal
+		self.main_widget.setMinimumWidth(400)	# Dimensiones minimas
 
-		self.popup_layout = QVBoxLayout()
+		self.popup_layout = QVBoxLayout()		# Layout vertical
 		
-		self.main_widget.setLayout(self.popup_layout)
-		self.setCentralWidget(self.main_widget)
+		self.main_widget.setLayout(self.popup_layout)	# Fijación del Layout
+		self.setCentralWidget(self.main_widget)			# Fijacion del widget principal
 
 	def loadParameters(self, items_list):
 		# Limpiando el popup antes de cargar algo

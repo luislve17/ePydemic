@@ -11,25 +11,25 @@ from AlignWidget import *
 
 class DisplayModule(QWidget):
 	def __init__(self, tools_module):
-		super().__init__()
-		self.layout = QVBoxLayout()
+		super().__init__()		# Llamada obligatoria al constructor del padre
+		self.layout = QVBoxLayout()			# Layout vertical
 		
 		self.tools_module = tools_module
 
-		self.main_tab_widget = QTabWidget()
+		self.main_tab_widget = QTabWidget()		# Proporciona una pila de widgets con pestañas
 		self.main_tab_widget.currentChanged.connect(self.loadOperations)
-		self.layout.addWidget(self.main_tab_widget)
-		self.group_box = QGroupBox("Display Module")
-		self.group_box.setLayout(self.layout)
+		self.layout.addWidget(self.main_tab_widget)		# Adicion al layout 
+		self.group_box = QGroupBox("Display Module")	# Proporciona una marco de cuadro de grupo con titulo, Display Module
+		self.group_box.setLayout(self.layout)			# Fijación del Layout
 
-		self.info_tab = InfoWidget(self.tools_module.listing_module)
-		self.align_tab = AlignWidget()
-		self.main_tab_widget.addTab(self.info_tab, "Info")		
-		self.main_tab_widget.addTab(self.align_tab, "Alineamiento")		
+		self.info_tab = InfoWidget(self.tools_module.listing_module)	# Llamada a la clase InfoWidget
+		self.align_tab = AlignWidget()				# Llamada a la clase AlignWidget
+		self.main_tab_widget.addTab(self.info_tab, "Info")		# Añade pestaña "Info"
+		self.main_tab_widget.addTab(self.align_tab, "Alineamiento")		# Añade pestaña "Alineamiento"
 
-		self.main_layout = QVBoxLayout()
-		self.main_layout.addWidget(self.group_box)
-		self.setLayout(self.main_layout)
+		self.main_layout = QVBoxLayout()		# Layout vertical
+		self.main_layout.addWidget(self.group_box)		# Adicion al layout 
+		self.setLayout(self.main_layout)		# Fijación del Layout
 
 	def loadOperations(self):
 		# Cleaning layouts

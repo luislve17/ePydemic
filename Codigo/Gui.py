@@ -18,7 +18,7 @@ class MainWindow(QMainWindow):
 	def create_gui(self):
 		self.main_layout = QHBoxLayout()	# Layout horizontal principal
 		self.main_splitter = QSplitter(Qt.Horizontal)	# Widget de division dinamica
-		self.main_widget = QWidget()	# Widget principal
+		self.main_widget = QWidget()		# Widget principal
 
 		self.tools_module = ToolsModule()	# Modulo de herramientas
 		self.display_module = DisplayModule(self.tools_module) # Modulo de dibujo/muestra
