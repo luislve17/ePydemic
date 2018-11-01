@@ -5,11 +5,11 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-#from EditButton import *
 from ImportButton import *
 from AlignButton import *
 from DeleteButton import *
 from SequenceButton import *
+from LoadButton import *
 
 class OperationsModule(QWidget):
 	def __init__(self, listing_module, display_module):
@@ -33,10 +33,11 @@ class OperationsModule(QWidget):
 		self.sub_layout.addWidget(self.delete_button)
 
 	def loadAlignmentOperations(self):
-		self.sequence_button = SequenceButton(self.listing_module, self.display_module.align_tab)
-		self.align_button = AlignButton(self.listing_module)
+		#self.sequence_button = SequenceButton(self.listing_module, self.display_module.align_tab)
+		#self.align_button = AlignButton(self.listing_module)
+		self.load_button = LoadButton(self.listing_module, self.display_module.align_tab.seq_list)
 		self.delete_button = DeleteButton(self.listing_module)
 
-		self.layout.addWidget(self.sequence_button)
-		self.sub_layout.addWidget(self.align_button)
+		#self.layout.addWidget(self.sequence_button)
+		self.sub_layout.addWidget(self.load_button)
 		self.sub_layout.addWidget(self.delete_button)
