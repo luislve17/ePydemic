@@ -10,6 +10,8 @@ from AlignButton import *
 from DeleteButton import *
 from SequenceButton import *
 from LoadButton import *
+from UploadAlnButton import *
+from LoadAlnButton import *
 
 class OperationsModule(QWidget):
 	def __init__(self, listing_module, display_module):
@@ -29,6 +31,7 @@ class OperationsModule(QWidget):
 	def loadInfoOperations(self):
 		self.import_button = ImportButton(self.listing_module)
 		self.delete_button = DeleteButton(self.listing_module)
+
 		self.sub_layout.addWidget(self.import_button)
 		self.sub_layout.addWidget(self.delete_button)
 
@@ -40,4 +43,13 @@ class OperationsModule(QWidget):
 
 		#self.layout.addWidget(self.sequence_button)
 		self.sub_layout.addWidget(self.load_button)
+		self.sub_layout.addWidget(self.delete_button)
+
+	def loadTreeOperations(self):
+		self.load_aln_button = LoadAlnButton(self.display_module.tree_tab.aln_list)
+		self.upload_aln_button = UploadAlnButton(self.listing_module)
+		self.delete_button = DeleteButton(self.listing_module)
+
+		self.sub_layout.addWidget(self.load_aln_button)
+		self.sub_layout.addWidget(self.upload_aln_button)
 		self.sub_layout.addWidget(self.delete_button)

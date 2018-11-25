@@ -8,6 +8,7 @@ from PyQt4.QtGui import *
 
 from InfoWidget import *
 from AlignWidget import *
+from TreeWidget import *
 
 class DisplayModule(QWidget):
 	def __init__(self, tools_module):
@@ -24,8 +25,11 @@ class DisplayModule(QWidget):
 
 		self.info_tab = InfoWidget(self.tools_module.listing_module)	# Llamada a la clase InfoWidget
 		self.align_tab = AlignWidget()				# Llamada a la clase AlignWidget
-		self.main_tab_widget.addTab(self.info_tab, "Info")		# Añade pestaña "Info"
+		#self.tree_tab = TreeWidget(self.tools_module.listing_module)
+		self.tree_tab = TreeWidget()
+		self.main_tab_widget.addTab(self.info_tab, "Información")		# Añade pestaña "Info"
 		self.main_tab_widget.addTab(self.align_tab, "Alineamiento")		# Añade pestaña "Alineamiento"
+		self.main_tab_widget.addTab(self.tree_tab, "Arbol Filogenético")# Añade pestaña "Arbol FIlogenético"
 
 		self.main_layout = QVBoxLayout()		# Layout vertical
 		self.main_layout.addWidget(self.group_box)		# Adicion al layout 
@@ -44,10 +48,13 @@ class DisplayModule(QWidget):
 				if operations_sublayout.itemAt(i).widget() != None:
 					operations_sublayout.itemAt(i).widget().setParent(None)
 
+			# Crear botones
 			current_tab = self.main_tab_widget.currentIndex()
 			if current_tab is 0:
 				self.tools_module.operations_module.loadInfoOperations()
 
 			elif current_tab is 1:
 				self.tools_module.operations_module.loadAlignmentOperations()
-						
+
+			elif current_tab is 2:
+				self.tools_module.operations_module.loadTreeOperations()
