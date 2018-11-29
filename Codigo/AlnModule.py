@@ -1,3 +1,7 @@
+"""
+## AlnModule ##
+"""
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import * 
 
@@ -8,15 +12,15 @@ class AlnModule(QWidget):
 	def __init__(self, aln_list):
 		super().__init__()
 		self.aln_list = aln_list
-		self.tree_button = QPushButton("Mostrar Árbol")
+		# Boton
+		self.tree_button = QPushButton("Mostrar Arbol")	#
 
-		self.delete_button = QPushButton()
+		# Boton Borrar
+		self.delete_button = QPushButton()	
 		self.delete_button.setMaximumSize(33, 27)	
 		self.delete_button.setIcon(QIcon("assets/trash_icon.png"))
 
-		#self.tree_name = QLineEdit()
-		#self.tree_name.setPlaceholderText("Nombre del archivo .png")
-
+		# Label
 		self.notif_label = QTextEdit()
 		self.notif_label.setMaximumHeight(50)
 		self.notif_label.setReadOnly(True)
@@ -28,7 +32,6 @@ class AlnModule(QWidget):
 		self.buttons_layout = QHBoxLayout()
 		self.buttons_layout.addWidget(self.tree_button)
 		self.buttons_layout.addWidget(self.delete_button)
-		#self.module_layout.addWidget(self.tree_name)
 
 		self.module_layout.addLayout(self.buttons_layout)
 		self.module_layout.addWidget(self.notif_label)
@@ -37,26 +40,28 @@ class AlnModule(QWidget):
 	def tree(self):
 		aln_item = self.aln_list.selectedItems()
 		
-		dnd_path = aln_item[0].data(35).split("/")[-1].split(".")[0]+".dnd"
-		dnd_path = '/'.join(aln_item[0].data(35).split("/")[:-1]) + "/" + dnd_path
-
-		tree_safe_boolean = self.getSafetyInfo(dnd_path) # Ver si es segura la generacion del arbol
-
-		if len(aln_item) == 0:
+		"""
+		Se verifica que el alineamiento sea de mas de 2 secuencias
+		"""
+		aln_path = aln_item[0].data(35).split("/")[-1].split(".")[0]+".aln"
+		#dnd_path = aln_item[0].data(35).split("/")[-1].split(".")[0]+".aln"
+		aln_path = '/'.join(aln_item[0].data(35).split("/")[:-1]) + "/" + aln_path
+		tree_safe_boolean = self.getSafetyInfo(aln_path) # Ver si es segura la generacion del arbol
+		print("safe_bool:", tree_safe_boolean)
+		if len(aln_item) == 0:			# Si no se ha seleccionado ningun archivo, se muestra mensaje
 			self.notif_label.setStyleSheet("color: #c67e61;")
 			self.notif_label.setText("Error: No ha seleccionado ningun archivo .aln")
-		elif not tree_safe_boolean:
+		elif not tree_safe_boolean:		# Si el alineamientos es de 2 secuencias se muestra mensaje de error
 			self.notif_label.setStyleSheet("color: #c67e61;")
-			self.notif_label.setText("Error: Seleccione un alineamiento de más de 2 secuencias")
-		else:
+			self.notif_label.setText("Error: Seleccione un alineamiento de mas de 2 secuencias")
+		else:			# Para alineamientos de mas de 2 secuencias
 			aln = [item.data(35) for item in aln_item]
 			cant_cod = 0
 			for path in aln:
 				handle = open(path)
-
-			PhylogeneticTree.tree(aln_item)
-			self.notif_label.setStyleSheet("color:#42663a;")
-			self.notif_label.setText("Feed:Generacion de arbol exitosa")
+			#self.notif_label.setStyleSheet("color:#42663a;")
+			#self.notif_label.setText("Feed: Operacion exitosa")
+			PhylogeneticTree.tree(aln_item)		#  Se muestra arbol filogenetico
 			
 	def deleteItem(self):
 		items = self.aln_list.selectedItems()
@@ -66,10 +71,8 @@ class AlnModule(QWidget):
 	def getSafetyInfo(self, path):
 		cont = 0
 		with open(path) as file:
-			for line in file:
+			for line, i in zip(file, range(1000)):
 				for char in line:
-					if char == ",":
-						cont += 1
-					if cont > 1:
-						return True
-		return False
+					if i == 5 and char == " ":
+						return False
+		return True

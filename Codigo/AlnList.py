@@ -1,6 +1,11 @@
+"""
+## AlnList ##
+"""
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+# Se muestra el contenido de los archivos mostrados en el ListWidget
 class AlnList(QListWidget):
 	def __init__(self, aln_list):
 		super().__init__()

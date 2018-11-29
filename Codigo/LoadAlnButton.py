@@ -10,12 +10,13 @@ import fnmatch
 class LoadAlnButton(QPushButton):
 	def __init__(self, aln_list):
 		super().__init__()
-		self.setText("Mostrar alineamientos")
+		self.setText("Mostrar alineamientos")	# Impresion
 		self.aln_list = aln_list
-		self.clicked.connect(self.loadAln)
+		self.clicked.connect(self.loadAln)	
 
 	def loadAln(self):
-		rootDir = "data/aligments"
+		rootDir = "data/aligments"	# ruta inicial
+		# Se cargaran todos los archivos .aln que existan en la carpeta aligments
 		for dirName, subdirList, fileList in os.walk(rootDir):
 			#print("Directorio encontrado %s" % dirName)
 			#for fname in fileList:

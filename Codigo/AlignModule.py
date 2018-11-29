@@ -8,15 +8,16 @@ class AlignModule(QWidget):
 	def __init__(self, seqs_list):
 		super().__init__()
 		self.seqs_list = seqs_list
+		# Boton
 		self.align_button = QPushButton("Alinear secuencias")
-		
+		# Boton borrar
 		self.delete_button = QPushButton()
 		self.delete_button.setMaximumSize(33, 27)		# Determina el tamaño maximo
 		self.delete_button.setIcon(QIcon("assets/trash_icon.png"))	# Establecer icono de borrar
 
 		self.align_name = QLineEdit()
 		self.align_name.setPlaceholderText("Nombre del archivo resultante")
-
+		# Label
 		self.notif_label = QTextEdit()
 		self.notif_label.setMaximumHeight(50)
 		self.notif_label.setReadOnly(True)		# Solo lectura
@@ -36,7 +37,7 @@ class AlignModule(QWidget):
 
 	def align(self):
 		fastas_list = self.seqs_list.selectedItems()
-		if len(fastas_list) == 0:
+		if len(fastas_list) == 0:	# Si no se selecciona un archivo, se muestra mensaje
 			self.notif_label.setStyleSheet("color: #c67e61;")
 			self.notif_label.setText("Error:Seleccione al menos un .fasta para alinear")
 		else:

@@ -1,3 +1,7 @@
+"""
+## PhylogeneticTree ##
+"""
+
 from Bio import AlignIO
 from Bio import Phylo
 from Bio.Phylo.TreeConstruction import DistanceCalculator
@@ -14,8 +18,8 @@ class PhylogeneticTree():
 			handle = open(path)
 
 		alignment = AlignIO.read(handle,"clustal")
-		calculator = DistanceCalculator('identity')
-		dm = calculator.get_distance(alignment)
-		constructor = DistanceTreeConstructor(calculator)
-		upgma_tree = constructor.build_tree(alignment)
-		Phylo.draw(upgma_tree)
+		calculator = DistanceCalculator('identity')	# Se calculan las distancias
+		dm = calculator.get_distance(alignment)	# Se obtienen las distancias
+		constructor = DistanceTreeConstructor(calculator)	
+		upgma_tree = constructor.build_tree(alignment)	# Se construye el arbol filogenetico
+		Phylo.draw(upgma_tree)		# Grafico del arbol filogenetico
