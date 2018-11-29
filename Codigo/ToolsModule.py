@@ -25,11 +25,10 @@ class ToolsModule(QWidget):
 		
 		# Adicion de los widgets al layout splitter
 		self.layout_splitter.addWidget(self.listing_module)
-		#self.layout_splitter.addWidget(self.operations_module)	
 
 		self.layout.addWidget(self.layout_splitter)
 
-		self.group_box = QGroupBox("Tools Module") # Marco del modulo
+		self.group_box = QGroupBox("Species") # Marco del modulo
 		self.group_box.setLayout(self.layout)	# Asignacion del layout vertical al marco
 		self.main_layout = QVBoxLayout()	# Fijacion del layout principal
 		self.main_layout.addWidget(self.group_box) # Adicion del marco al layout principal

@@ -25,4 +25,7 @@ class UploadAlnButton(QPushButton):
 								title="Buscador",
 								default='',
 								filetypes=ext)
-		shutil.move(file,"data/aligments/otros/")		# Se mueve el archivo a la carpeta aligments
+		if file != None:
+			shutil.move(file,"data/aligments/otros/")		# Se mueve el archivo a la carpeta aligments
+		else:
+			print("Archivo no seleccionado")

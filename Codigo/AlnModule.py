@@ -47,7 +47,6 @@ class AlnModule(QWidget):
 		#dnd_path = aln_item[0].data(35).split("/")[-1].split(".")[0]+".aln"
 		aln_path = '/'.join(aln_item[0].data(35).split("/")[:-1]) + "/" + aln_path
 		tree_safe_boolean = self.getSafetyInfo(aln_path) # Ver si es segura la generacion del arbol
-		print("safe_bool:", tree_safe_boolean)
 		if len(aln_item) == 0:			# Si no se ha seleccionado ningun archivo, se muestra mensaje
 			self.notif_label.setStyleSheet("color: #c67e61;")
 			self.notif_label.setText("Error: No ha seleccionado ningun archivo .aln")
@@ -72,7 +71,7 @@ class AlnModule(QWidget):
 		cont = 0
 		with open(path) as file:
 			for line, i in zip(file, range(1000)):
-				for char in line:
-					if i == 5 and char == " ":
+				for char, j in zip(line, range(1000)):
+					if (i == 5) and (j == 0) and (char == " "):
 						return False
 		return True
